@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapScreen from './src/screens/MapScreen'
-import {locations} from './src/data/data'
+import { Button, StyleSheet, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MyStack from './src/navigator/Navigation';
 
-export default class App extends Component {
-  render(){
-    return (
-      
-      <View styles={styles.container}>
-        <MapScreen
-        
-        />
-    </View>
-    );
-  }
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+      <NavigationContainer >
+        <MyStack></MyStack>
+      </NavigationContainer>
+  )
 }
+
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
