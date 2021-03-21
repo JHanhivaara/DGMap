@@ -4,7 +4,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { StyleSheet, View } from 'react-native'
 import { locations } from '../../data/data.js'
 
-const MapScreen = ({navigation}) => {
+export default function MapScreen({ navigation }){
     return (
         <View style={styles.view}>
             <MapView
@@ -23,15 +23,22 @@ const MapScreen = ({navigation}) => {
                         coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
                         title={marker.title}
                         description={marker.description}
+                        onCalloutPress={() => {
+
+                            navigation.navigate('Details'), {
+                                marker: 'dog'
+                            }
+                            console.log(marker.title, marker.description)
+                        }}
                     />
+
                 ))}
             </MapView>
-                <Button style={styles.button} title='dog' onPress={() => navigation.navigate('Details')}></Button>
+            <Button style={styles.button} title='dog' onPress={() => navigation.navigate('Details')}></Button>
         </View>
     )
 }
 
-export default MapScreen;
 
 const styles = StyleSheet.create({
     map: {
@@ -41,13 +48,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    button:{
+    button: {
         minWidth: '20%'
     },
     btnContainer: {
-        flex:1,
+        flex: 1,
         flexDirection: 'row',
-        alignItems:'flex-start',
-        justifyContent:'center',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
     }
 })
